@@ -1,0 +1,54 @@
+#Importing Libraries
+
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+#Using PIL for the image
+
+from PIL import image
+img=Image.open('path of image in storage')
+
+#Rotate image
+
+img.rotate(angle)
+
+#Checking the type of image
+
+type(img)    #We don't work with jpeg or png format instead we convert images into arrays
+
+#Turn image into array
+
+img_array=np.asarray(img)
+type(img_array)             #You will get format as numpy.ndarray
+
+#Get the height,width and channels
+
+img_array.shape    #You will get in the format (x,y,z); x is height, y is width and z is the channel of colors
+
+#We can plot the image as:
+plt.imshow(img_array)
+
+#Making a copy of our image for further use
+
+img_test=img_array.copy()
+
+#PLotting image with only red channel, green channel and blue channel respectively
+
+plt.imshow(img_test[:,:,0])
+plt.imshow(img_test[:,:,1])
+plt.imshow(img_test[:,:,2])
+
+#Scaling red,green and blue channel to Gray mode
+
+plt.imshow(img_test[:,:,0], cmap='gray')
+plt.imshow(img_test[:,:,1], cmap='gray')
+plt.imshow(img_test[:,:,2], cmap='gray')
+
+#Removing red,green,blue color respectively
+
+img_test[:,:,0]=0
+img_test[:,:,1]=0
+img_test[:,:,2]=0
+
+#You can try out different permutations of RGB with our image and see the difference 
