@@ -1,0 +1,36 @@
+#Program to draw a rectangle by mouse
+
+import cv2
+import numpy as np
+drawing=False
+ex=-1
+ey=-1
+def draw_rectangle(event,x,y,flags,param):
+  global ex,ey,drawing
+  if event==cv2.EVENT_LBUTTONDOWN:
+    drawing=True
+    ex,ey=x,y
+  elif event==cv2.EVENT_MOUSEMOVE:
+    if drawing==True:
+      cv2.rectangle(img,
+                    (ex,ey),        #pt1
+                    (x,y),          #pt2
+                    color,
+                    thickness)
+  elif  event==cv2.EVENT_LBUTTONUP:
+    drawing=False
+    cv2.rectangle(img,
+                    (ex,ey),        #pt1
+                    (x,y),          #pt2
+                    color,
+                    thickness)
+ cv2.namedWindow(winname='my_draw')
+ cv2.setMouseCallback('my_draw',draw_rectangle)
+ while True:
+    cv2.imshow('my_draw',img)
+    if cv2.waitKey(5) & 0xFF==ord('q):
+      break
+ cv2,destroyAllWindows()
+ 
+                    
+  
