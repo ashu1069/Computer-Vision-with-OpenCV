@@ -1,0 +1,78 @@
+#Importing libraries
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+%matplotlib inline
+
+#Creating a black image to work on:
+
+black_img=np.zeros(shape=(512,512,3),
+                         dtype=n.int16)
+plt.imshow(black_img)
+
+#Lets draw shapes now
+#Circle
+
+cv2.circle(img=black_img,
+           center=(400,100),
+           radius=50,
+           color=(255,0,0),
+           thickness=8)           #Arguments in circle function while drawing a circle are center,radius,color,thickness and background image
+
+#To draw a filled circle or rectangle or any shape, just change the value of thickness to "-1".
+
+#Rectangle
+
+cv2.rectangle(black_img,
+              pt1=(200,200),
+              pt2=(300,300),
+              color=(0,255,0),
+              thickness=5)               #Arguments are two points, color,and thickness
+
+#Triangle
+
+vertices=np.array([[10,450],
+                   [110,350],
+                   [180,450]],
+                   np.int32)
+pts=vertices.reshape(-1,1,2)
+cv2.polylines(black_img,
+              [pts],
+              isClosed=True,
+              color=(0,0,255),
+              thickness=3)
+#For filled triangle,use:
+cv2.fillPoly(black_img,
+              [pts],
+              color=(255,167,201))
+plt.imshow(black_img)
+
+#Drawing a line
+
+cv2.line(black_img,
+         pt1=(512,0),
+         pt2=(0,512),
+         color=(255,0,255),
+         thickness=3)          #Arguments are two points,color and thickness
+ plt.imshow(black_img)
+ 
+ #Writing text in image
+ 
+ font=cv2.FONT_HERSHEY_SIMPLEX
+ cv2.putText(black_img,
+             text='Rhyme',
+             org=(210,500),
+             fontScale=3,
+             fontFace=font,
+             color=(255,255,0),
+             thickness=3,
+             lineType=cv2.LINE_AA)
+ plt.imshow(black_img)
+ 
+ #putText() has following arguments: text,origin as org,fontFace,fontScale,color,thickness,lineType
+ 
+          
+
+         
