@@ -1,0 +1,60 @@
+#Importing libraries
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+%matplotlib inline
+
+#Import OpenCV
+
+import cv2
+
+#Getting image with imread
+
+img=cv2.imread('path of image in storage')
+type(img)                                  #shows numpy.ndarray
+plt.imshow(img)   
+
+#Until now we were working with Matplolib and RGB
+#OpenCV is reading the channels as BGR
+#We will convert OpenCV to the channels of the photo
+
+img_fix=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+#Scaling our image to Gray
+
+img_gray=cv2.imread('path',cv2.IMREAD_GRAYSCALE)
+img_gray.shape
+plt.imshow(img_gray, cmap='gray')
+
+#Resizing with ratio
+
+img_new=cv2.resize(img_fix,(1000,400))
+plt.imshow(img_new)
+
+#Resizing with ratio
+
+width_ratio=0.5
+height_ratio=0.5
+img2=cv2.resize(img_fix,
+                  (0,0),
+                  img_fix,
+                  width_ratio,
+                  height_ratio)
+img2.shape                          #img2 will be 50% of img_fix
+plt.imshow(img2)  
+
+#Flipping on horzontal and vertical axis
+
+img_3=cv2.flip(img_fix,0)           #0 for horizontal axis
+img_3=cv2.flip(img_fix,1)           #1 for vertical axis
+#flipping on both axis
+img_3=cv2.flip(img_fix,-1)
+
+#Changing size of our canvas
+
+last_img=plt.figure(figsize=(10,7))
+ilp=last_img.add_subplot(111)
+ilp.imshow(img_fix)
+
+
